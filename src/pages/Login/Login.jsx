@@ -8,10 +8,10 @@ const Login = () => {
 
             <div className="Form"> 
 
-                <label for="usernmae"></label>
+                <label for="usernmae">Username: </label>
                 <input type="text" name="username"/>
 
-                <label for="password"></label>
+                <label for="password">Password: </label>
                 <input type="text" name="password"/>
 
                 <button>Login</button>
