@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import "./report.scss";
 import Modal from "../../components/Modal";
-const Report = () => {
+
+const Report = (props) => {
+
   const [openModal, setOpenModal] = useState(false);
 
+  console.log(props.reportInfo);
   return (
     <div className="Report">
       <div className="info">
         <span>
-          <h4>Google</h4>
+          <h5>{props.reportInfo.companyName}</h5>
         </span>
         <span>
-          <h4>12.05.2012</h4>
+          <h5>{props.reportInfo.interviewDate.slice(0,15)}</h5>
         </span>
         <span className="last-span">
-          <h4>Passed</h4>
+          <h5>{props.reportInfo.status}</h5>
           <i class="fas fa-info-circle" onClick={() => setOpenModal(true)}></i>
         </span>
       </div>
-      {openModal ? <Modal cancelModal={setOpenModal} /> : null}
+      {openModal ? <Modal cancelModal={setOpenModal} reportInfo={props.reportInfo}/> : null}
+      
     </div>
   );
 };

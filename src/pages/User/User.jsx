@@ -1,19 +1,23 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./user.scss";
 import Login from "../../components/Login";
 import Report from "../../components/Report";
 
 import { Link } from "react-router-dom";
 
-const User = () => {
+const User = (props) => {
   const [reports, setReports] = useState([]);
+
+  const { id: matchId } = props.match.params;
+  console.log(matchId);
 
   useEffect(() => {
     fetch("http://localhost:3333/api/reports")
       .then((res) => res.json())
-      .then((reports) => console.log(reports));
+      .then((reports) => setReports(reports));
   }, []);
-
+  
+  console.log(reports);
   return (
     <div className="User">
       <header>
@@ -45,12 +49,10 @@ const User = () => {
             <h4>Status</h4>
           </span>
         </div>
-        
-        <Report />
-        <Report />
-        <Report />
       </div>
-
+      {reports.filter(report => matchId == report.candidateId).map(e =>(
+        <Report reportInfo={e}/>
+        ))}
       {/* <Modal /> */}
     </div>
   );

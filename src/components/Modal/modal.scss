@@ -1,38 +1,58 @@
-.Modal{
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+.background {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Modal {
+    background-color: white;
+    width: 40%;
+    height: 45%;
+    margin: auto;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 10px;
+    position: relative;
+
+    h4{
+        padding: 15px;
+        border-bottom: 1px solid black;
+        margin-bottom: 10px;
+    }
+
+    h5{
+        padding: 10px 0px;
+    }
+  }
+
+  .modal-info {
     display: flex;
+
+    .notes{
+        width: 60%;
+        margin-left: 50px;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    padding-left: 10px;
+    top: 0;
+    right: 0;
+    font-size: 1.5em;
+    display: flex;
+    border-bottom-left-radius: 30px;
     justify-content: center;
-    align-items: center;
-
-    .modal-info{
-        background-color: white;
-        width: 30%;
-        margin: auto;
-        padding: 10px;
-        border-radius: 10px;
-  
-    }
-
-    button{
-        cursor: pointer;
-        position: absolute;
-        height: 30px;
-        width: 30px;
-        top: 0;
-        right: 0;
-        font-size: 1.5em;
-        margin: 20px;
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        outline: none;
-        border: none;
-    }
+    outline: none;
+    border: none;
+  }
 }
