@@ -13,7 +13,7 @@ const Home = () => {
         <div className="Home">
             <header>
                 <input type="text"/>
-                <login />
+                <Login />
         
             </header>
 

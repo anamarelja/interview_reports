@@ -1,3 +1,4 @@
+
 import React, { useState,useEffect,useContext } from "react";
 import "./user.scss";
 import Login from "../../components/Login";
@@ -8,18 +9,23 @@ import { Link } from "react-router-dom";
 import { computeHeadingLevel } from "@testing-library/dom";
 
 const User = (props) => {
- 
+
   const [reports, setReports] = useState([]);
+
+  const { id: matchId } = props.match.params;
+  console.log(matchId);
+
 
   const candidates = useContext(candidateContext);
 
 const user = candidates.find ((e) => e.id==props.match.params.id);
 
 
+
   useEffect(() => {
     fetch("http://localhost:3333/api/reports")
       .then((res) => res.json())
-      .then((reports) => console.log(reports));
+      .then((reports) => setReports(reports));
   }, []);
 
   if(candidates.length){
@@ -41,31 +47,16 @@ const user = candidates.find ((e) => e.id==props.match.params.id);
             <h4>Education: {user.education}</h4>
             <h4>Email: {user.email}</h4>
           </div>
-        </div>
-  
-        <div className="report-list">
-          <div className="report-header">
-            <span>
-              <h4>Company</h4>
-            </span>
-            <span>
-              <h4>Interview Date</h4>
-            </span>
-            <span>
-              <h4>Status</h4>
-            </span>
-          </div>
-          
-          <Report />
-          <Report />
-          <Report />
-        </div>
-  
-        {/* <Modal /> */}
+
+
       </div>
-    );
-  }
-  
+      {reports.filter(report => matchId == report.candidateId).map(e =>(
+        <Report reportInfo={e}/>
+        ))}
+
+    </div>
+  );
+}
 };
 
 export default User;
