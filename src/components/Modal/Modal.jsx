@@ -12,7 +12,6 @@ const Modal = (props) => {
 
                    <p>Company</p>
                    <h4>Google</h4>
-
                    <p>Company</p>
                    <h4>Google</h4>
                </div>
