@@ -19,7 +19,7 @@ function App() {
   useEffect (() => {
       fetch('http://localhost:3333/api/candidates')
       .then(res => res.json())
-      .then(data => data.map(e=> ({...e, avatar: 'https://loremflickr.com/320/240/headshot'})))
+      .then(data => data.map((e,i)=> ({...e, avatar: `https://loremflickr.com/320/240/headshot?random=${i}`})))
       .then(data => setCandidates(data))
   },[])
 
