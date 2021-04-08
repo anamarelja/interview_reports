@@ -17,6 +17,7 @@ const User = (props) => {
 
   const user = candidates.find((e) => e.id == props.match.params.id);
 
+
   useEffect(() => {
     fetch("http://localhost:3333/api/reports")
       .then((res) => res.json())
