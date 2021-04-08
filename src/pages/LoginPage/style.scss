@@ -1,6 +1,11 @@
-.Login{
+.LoginPage{
     background-color: #eeeeee;
     height: 100vh;
+
+    .btn-home{
+        margin: 15px;
+    }
+
     .Form{
         margin:  auto;
         margin-top: 150px;

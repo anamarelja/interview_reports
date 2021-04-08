@@ -2,7 +2,7 @@ import './App.css';
 import {Route, Switch, Redirect} from 'react-router-dom'
 import Home from './pages/Home'
 import Admin from './pages/Admin'
-import Login from './pages/Login'
+import Login from './pages/LoginPage'
 import NewReport from './pages/NewReport'
 import User from './pages/User'
 

@@ -1,0 +1,22 @@
+.info {
+  display: flex;
+  border-top: 1px solid black;
+  span {
+    width: 40%;
+    margin-left: 10px;
+  }
+
+  .last-span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    i{
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+      &:hover{
+        color: white;
+      }
+    }
+  }
+}

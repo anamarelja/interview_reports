@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import {  Link } from 'react-router-dom'
 import './style.scss'
 
-const Login = () => {
+const LoginPage = () => {
     return ( 
-        <div className="Login">
-            <button>BACK TO HOME</button>
-
+        <div className="LoginPage">
+            <Link to='/'>  <button className="btn-home">BACK TO HOME</button></Link>
+          
             <div className="Form"> 
 
                 <label for="usernmae">Username: </label>
@@ -14,11 +15,13 @@ const Login = () => {
                 <label for="password">Password: </label>
                 <input type="text" name="password"/>
 
-                <button>Login</button>
+
+               <button>LoginPage</button>
+                
                 
             </div>
         </div>
      );
 }
  
-export default Login;
+export default LoginPage;

@@ -1,32 +1,57 @@
-import React, { useState } from "react";
-import "./style.scss";
+import React, { useState,useEffect } from "react";
+import "./user.scss";
 import Login from "../../components/Login";
 import Report from "../../components/Report";
-import Modal from "../../components/Modal";
+
+import { Link } from "react-router-dom";
 
 const User = () => {
-    
+  const [reports, setReports] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/api/reports")
+      .then((res) => res.json())
+      .then((reports) => console.log(reports));
+  }, []);
+
   return (
     <div className="User">
       <header>
-        <button>Back</button>
+        <Link to="/">
+          <button>Back</button>
+        </Link>
         <Login />
       </header>
-      <div>
+
+      <div className="user-info">
         <img src="" alt="pic" />
-        <h3>Name</h3>
-        <h4>Education</h4>
-        <h4>Email</h4>
+
+        <div className="user-desc">
+          <h3>Name</h3>
+          <h4>Education</h4>
+          <h4>Email</h4>
+        </div>
       </div>
 
-      <div className="ReportList">
+      <div className="report-list">
+        <div className="report-header">
+          <span>
+            <h4>Company</h4>
+          </span>
+          <span>
+            <h4>Interview Date</h4>
+          </span>
+          <span>
+            <h4>Status</h4>
+          </span>
+        </div>
+        
         <Report />
         <Report />
         <Report />
       </div>
 
-      <Modal />
-
+      {/* <Modal /> */}
     </div>
   );
 };
