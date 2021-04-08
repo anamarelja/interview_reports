@@ -1,12 +1,20 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import "./user.scss";
 import Login from "../../components/Login";
 import Report from "../../components/Report";
+import {candidateContext} from "../../App";   
 
 import { Link } from "react-router-dom";
+import { computeHeadingLevel } from "@testing-library/dom";
 
-const User = () => {
+const User = (props) => {
+ 
   const [reports, setReports] = useState([]);
+
+  const candidates = useContext(candidateContext);
+
+const user = candidates.find ((e) => e.id==props.match.params.id);
+
 
   useEffect(() => {
     fetch("http://localhost:3333/api/reports")
@@ -14,46 +22,50 @@ const User = () => {
       .then((reports) => console.log(reports));
   }, []);
 
-  return (
-    <div className="User">
-      <header>
-        <Link to="/">
-          <button>Back</button>
-        </Link>
-        <Login />
-      </header>
-
-      <div className="user-info">
-        <img src="" alt="pic" />
-
-        <div className="user-desc">
-          <h3>Name</h3>
-          <h4>Education</h4>
-          <h4>Email</h4>
+  if(candidates.length){
+    return (
+      <div className="User">
+        <header>
+          <Link to="/">
+            <button>Back</button>
+          </Link>
+          <Login />
+        </header>
+  
+        <div className="user-info">
+          
+          <img src={user.avatar} alt="pic" />
+  
+          <div className="user-desc">
+            <h3>Name: {user.name}</h3>
+            <h4>Education: {user.education}</h4>
+            <h4>Email: {user.email}</h4>
+          </div>
         </div>
-      </div>
-
-      <div className="report-list">
-        <div className="report-header">
-          <span>
-            <h4>Company</h4>
-          </span>
-          <span>
-            <h4>Interview Date</h4>
-          </span>
-          <span>
-            <h4>Status</h4>
-          </span>
+  
+        <div className="report-list">
+          <div className="report-header">
+            <span>
+              <h4>Company</h4>
+            </span>
+            <span>
+              <h4>Interview Date</h4>
+            </span>
+            <span>
+              <h4>Status</h4>
+            </span>
+          </div>
+          
+          <Report />
+          <Report />
+          <Report />
         </div>
-        
-        <Report />
-        <Report />
-        <Report />
+  
+        {/* <Modal /> */}
       </div>
-
-      {/* <Modal /> */}
-    </div>
-  );
+    );
+  }
+  
 };
 
 export default User;
