@@ -1,0 +1,15 @@
+.Card{
+    width: 250px;
+    height: 350px;
+    border: solid grey 0.5px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    img{
+        width: 200px;
+    }
+    
+ 
+}
