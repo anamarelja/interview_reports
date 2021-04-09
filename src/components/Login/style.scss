@@ -1,0 +1,22 @@
+.Login{
+    .loggingButton {
+        background-color:#44c767;
+        border-radius:20px;
+        border:1px solid #18ab29;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:17px;
+        padding:7px 25px;
+        text-decoration:none;
+    }
+    .loggingButton:hover {
+        background-color:#5cbf2a;
+    }
+    .loggingButton:active {
+        position:relative;
+        top:1px;
+    }
+    
+}

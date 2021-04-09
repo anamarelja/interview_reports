@@ -7,6 +7,7 @@ import { candidateContext } from "../../App";
 import { Link } from "react-router-dom";
 
 const User = (props) => {
+  
   const [reports, setReports] = useState([]);
 
   const { id: matchId } = props.match.params;
