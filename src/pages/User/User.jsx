@@ -10,7 +10,8 @@ const User = (props) => {
   const [reports, setReports] = useState([]);
 
   const { id: matchId } = props.match.params;
-  const candidates = useContext(candidateContext);
+  const {candidates} = useContext(candidateContext);
+
   const user = candidates.find((e) => e.id == props.match.params.id);
 
   useEffect(() => {
