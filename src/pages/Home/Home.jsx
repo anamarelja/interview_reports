@@ -7,16 +7,22 @@ import {candidateContext} from '../../App';
 
 const Home = () => {
 
-    const candidates = useContext(candidateContext)
+    const {candidates, setCandidates} = useContext(candidateContext)
+    const [search, setSearch] = useState('');
+
+    const inputSearch = (e) => {
+        setSearch(e.target.value)
+        setCandidates(candidates.filter((e)=> e.name.toLocaleLowerCase().startsWith(`${search.toLocaleLowerCase()}`)))
+
+    }
 
     return ( 
         <div className="Home">
             <header>
-                <input type="text"/>
+                <input type="text" value={search} placeholder="Seacrh by name..." onChange={inputSearch}/>
                 <Login />
         
             </header>
-
 
             <div className="Cards">
                 {candidates.map((e, i, arr) => (
