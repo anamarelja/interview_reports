@@ -4,7 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
+
+
 import LoginPage from "./pages/LoginPage";
+
 import NewReport from "./pages/NewReport";
 import User from "./pages/User";
 
@@ -23,6 +26,7 @@ function App() {
   const { Provider: TokenProvider } = tokenContext;
   const { Provider: CompanyProvider } = companyContext;
   const { Provider: ReportProvider } = reportContext;
+
 
   useEffect(() => {
     fetch("http://localhost:3333/api/candidates")
