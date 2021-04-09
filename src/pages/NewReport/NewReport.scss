@@ -1,0 +1,78 @@
+.NewReport {
+  header {
+    padding: 0 40px;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+  }
+
+  main {
+    width: 70%;
+    margin: auto;
+    margin-top: 80px;
+  }
+
+  .page-one {
+    display: flex;
+
+   
+
+    .wizard-steps {
+      width: 20%;
+      border-right: 3px solid black;
+      margin-right: 30px;
+      height: 70vh;
+      div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #8b8b8b;
+        p {
+          margin-right: 10px;
+          border: 1px solid #8b8b8b;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          text-align: center;
+        }
+      }
+
+      .active{
+        font-weight: bold;
+        color: black;
+        p{
+            border: 1px solid black;  
+        }
+      }
+    }
+
+    .candidate-select {
+      width: 80%;
+    
+      .candidate-list {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+      .candidate {
+        background-color: #eeeeee;
+        margin-bottom: 20px;
+        padding: 20px;
+        width: 49%;
+      }
+    }
+  }
+
+  button{
+      padding: 5px 20px;
+      
+  }
+}
