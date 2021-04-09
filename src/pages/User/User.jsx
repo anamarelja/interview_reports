@@ -5,7 +5,6 @@ import Report from "../../components/Report";
 import { candidateContext } from "../../App";
 
 import { Link } from "react-router-dom";
-import { computeHeadingLevel } from "@testing-library/dom";
 
 const User = (props) => {
   const [reports, setReports] = useState([]);

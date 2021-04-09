@@ -14,7 +14,7 @@ const Admin = () => {
             </header>
 
             <div>OBJEKAT KAD SE ODRADI SUBMIT IZ WIZARDA</div>
-            <Modal />
+            {/* <Modal /> */}
 
         </div>
      );
