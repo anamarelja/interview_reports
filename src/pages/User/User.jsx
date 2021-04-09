@@ -11,7 +11,7 @@ const User = (props) => {
   const [reports, setReports] = useState([]);
 
   const { id: matchId } = props.match.params;
-  const candidates = useContext(candidateContext);
+  const { candidates } = useContext(candidateContext);
   const user = candidates.find((e) => e.id == props.match.params.id);
 
   useEffect(() => {
@@ -20,47 +20,58 @@ const User = (props) => {
       .then((reports) => setReports(reports));
   }, []);
 
-  if (candidates.length) {
-    return (
-      <div className="User">
-        <header>
-          <Link to="/">
-            <button>Back</button>
-          </Link>
-          <Login />
-        </header>
+  console.log(candidates.length)
+console.log(candidates)
+  return (
+    <div className="User">
+      <header>
+        <Link to="/">
+          <button>Back</button>
+        </Link>
+        <Login />
+      </header>
 
-        <div className="user-info">
-          <img src={user.avatar} alt="pic" />
-          <div className="user-desc">
-            <h3>Name: {user.name}</h3>
-            <h4>Education: {user.education}</h4>
-            <h4>Email: {user.email}</h4>
+      <div>
+        {!candidates.lenght ? 
+        (
+          <div>
+            <div className="user-info">
+              <img src={user.avatar} alt="pic" />
+              <div className="user-desc">
+                <h3>Name: {user.name}</h3>
+                <h4>Education: {user.education}</h4>
+                <h4>Email: {user.email}</h4>
+                <h4>Birth date: {user.birthday.slice(4,15)}</h4>
+              </div>
+            </div>
+
+            <div className="report-list">
+              <div className="report-header">
+                <span>
+                  <h4>Company</h4>
+                </span>
+                <span>
+                  <h4>Interview Date</h4>
+                </span>
+                <span>
+                  <h4>Status</h4>
+                </span>
+              </div>
+            </div>
+
+            {reports
+              .filter((report) => matchId == report.candidateId)
+              .map((e) => (
+                <Report reportInfo={e} />
+              ))}
           </div>
-        </div>
-
-        <div className="report-list">
-          <div className="report-header">
-            <span>
-              <h4>Company</h4>
-            </span>
-            <span>
-              <h4>Interview Date</h4>
-            </span>
-            <span>
-              <h4>Status</h4>
-            </span>
-          </div>
-        </div>
-
-        {reports
-          .filter((report) => matchId == report.candidateId)
-          .map((e) => (
-            <Report reportInfo={e} />
-          ))}
+        ) 
+        : 
+       null
+        }
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default User;

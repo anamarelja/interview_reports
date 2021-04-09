@@ -13,7 +13,7 @@ const Home = () => {
     const inputSearch = (e) => {
         setSearch(e.target.value)
         setCandidates(candidates.filter((e)=> e.name.toLocaleLowerCase().startsWith(`${search.toLocaleLowerCase()}`)))
-
+        
     }
 
     return ( 
