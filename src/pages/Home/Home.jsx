@@ -7,6 +7,7 @@ import { candidateContext } from "../../App";
 const Home = () => {
   const { candidates, setCandidates } = useContext(candidateContext);
   const [search, setSearch] = useState("");
+  console.log(candidates);
 
   const inputSearch = (e) => {
     setSearch(e.target.value);
@@ -21,18 +22,23 @@ const Home = () => {
     <div className="Home">
       <header>
         <div className="wrapper">
-          <input
-            type="text"
-            value={search}
-            placeholder="Seacrh by name..."
-            onChange={inputSearch}
-          />
+          <div>
+            <h4>LOGO</h4>
+            <input
+              type="text"
+              value={search}
+              placeholder="Seacrh by name..."
+              onChange={inputSearch}
+            />
+          </div>
+
           <Login />
         </div>
       </header>
-
+        <div className="wrapper-text">Candidates</div>
       <div className="Cards">
-        {candidates.map((e, i, arr) => (
+          
+        {candidates.map((e) => (
           <Card user={e} />
         ))}
       </div>

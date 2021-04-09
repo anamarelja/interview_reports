@@ -4,13 +4,18 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
-    <Link to={`/user${props.user.id}`}>
+    
       <div className="Card">
-        <img src={props.user.avatar} alt="user-image" />
-        <h3>{props.user.name}</h3>
-        <h4>{props.user.email}</h4>
+        <img src={props.user.avatar} alt="user"/>
+        <div className="bottomCard">
+        <div>
+          <p>{props.user.name}</p>
+          <a href = {`mailto: ${props.user.email}`}>{props.user.email.toLowerCase()}</a>
+        </div>
+        <Link to={`/user${props.user.id}`} className="links">View Profile</Link>
+        </div>
       </div>
-    </Link>
+    
   );
 };
 

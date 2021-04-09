@@ -50,7 +50,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/admin" component={Admin} />
               <Route path="/login" component={LoginPage} />
-              <Route path="/user:iPd" component={User} />
+              <Route path="/user:id" component={User} />
               <Route path="/admin/newreport" component={NewReport} />
               {/* <Redirect from="" to="/"></Redirect> */}
             </CompanyProvider>
