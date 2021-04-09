@@ -33,34 +33,45 @@ const LoginPage = () => {
 
   return (
     <div className={error ? "errorPage" : "LoginPage"}>
-      <Link to="/">
-        {" "}
-        <button className="btn-home">BACK TO HOME</button>
-      </Link>
+      <header>
+        <div className="wrapper">
+          <Link to="/" className="links">
+             &#8592; Back to Home
+          </Link>
+        </div>
+      </header>
 
       <div className="Form">
+        <p className="welcomeMessage">Sign in to Account</p>
+        <div className="inputs">
         <label for="usernmae">Username: </label>
         <input
           type="text"
           name="username"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
+          required
         />
 
         <label for="password">Password: </label>
         <input
-          type="text"
+          type="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          required
         />
+        {error ? (
+          <p className="errorMessage">Incorrect username or password. Please try again.</p>
+        ) : null}
+        </div>
 
-        <button onClick={onUserLogin}>LoginPage</button>
+        <div>
+        <button onClick={onUserLogin} className="loggingButton">Sign in</button>
+        </div>
         {token && <Redirect to="/admin" />}
 
-        {error ? (
-          <p>Incorrect username or password. Please try again.</p>
-        ) : null}
+        
       </div>
     </div>
   );
