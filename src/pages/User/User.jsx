@@ -10,12 +10,8 @@ const User = (props) => {
   const [reports, setReports] = useState([]);
 
   const { id: matchId } = props.match.params;
-<<<<<<< HEAD
-  const { candidates } = useContext(candidateContext);
-=======
-  const {candidates} = useContext(candidateContext);
 
->>>>>>> c4c410a585cb45e4fa6268a746654205e7b39ade
+  const {candidates} = useContext(candidateContext);
   const user = candidates.find((e) => e.id == props.match.params.id);
 
   useEffect(() => {
@@ -24,8 +20,6 @@ const User = (props) => {
       .then((reports) => setReports(reports));
   }, []);
 
-  console.log(candidates.length)
-console.log(candidates)
   return (
     <div className="User">
       <header>
