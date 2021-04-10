@@ -3,22 +3,17 @@ import "./user.scss";
 import Login from "../../components/Login";
 import Report from "../../components/Report";
 import { candidateContext } from "../../App";
+import { reportContext } from "../../App";
 import { tokenContext } from "../../App";
 import { Link } from "react-router-dom";
 
 const User = (props) => {
-  const [reports, setReports] = useState([]);
+  const { reports } = useContext(reportContext)
   const { id: matchId } = props.match.params;
   const { candidates } = useContext(candidateContext);
   const { token } = useContext(tokenContext);
 
   const user = candidates.find((e) => e.id == props.match.params.id);
-
-  useEffect(() => {
-    fetch("http://localhost:3333/api/reports")
-      .then((res) => res.json())
-      .then((reports) => setReports(reports));
-  }, []);
 
   return (
     <div className="User">
@@ -34,7 +29,6 @@ const User = (props) => {
               </Link>
             )}
           </div>
-
           <Login />
         </div>
       </header>
@@ -72,7 +66,7 @@ const User = (props) => {
 
             <div className="final-reports">
               {reports
-                .filter((report) => matchId == report.candidateId)
+                .filter((reports) => matchId == reports.candidateId)
                 .map((e) => (
                   <Report reportInfo={e} />
                 ))}
