@@ -4,9 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
-
 import LoginPage from "./pages/LoginPage";
-
 import NewReport from "./pages/NewReport";
 import User from "./pages/User";
 
@@ -17,8 +15,8 @@ export const companyContext = React.createContext({});
 function App() {
   const [candidates, setCandidates] = useState([]);
   const [companies, setCompanies] = useState([]);
-  const [token, setToken] = useState("");
-
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  
   const { Provider: CandidatesProvider } = candidateContext;
   const { Provider: TokenProvider } = tokenContext;
   const { Provider: CompanyProvider } = companyContext;

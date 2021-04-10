@@ -6,7 +6,6 @@ const Report = (props) => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(props.reportInfo);
   return (
     <div className="Report">
       <div className="info">

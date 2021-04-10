@@ -9,16 +9,21 @@ const Admin = () => {
   const companies = useContext(companyContext);
 
   return (
-
     <div className="Admin">
-
       <header>
         <div className="wrapper">
           <div>
-            <h3>Admin Panel</h3>
-            <input type="text" placeholder="Search by name or company name..."/>
-            <Link to="/" className="links">Home</Link>
-            <Link to="/admin/newreport" className="links">Create New Report</Link>
+            <h3>LOGO</h3>
+            <input
+              type="text"
+              placeholder="Search by name or company name..."
+            />
+            <Link to="/" className="links">
+              Home
+            </Link>
+            <Link to="/admin/newreport" className="links">
+              Create New Report
+            </Link>
           </div>
           <Login />
         </div>
@@ -26,7 +31,6 @@ const Admin = () => {
 
       <div>OBJEKAT KAD SE ODRADI SUBMIT IZ WIZARDA</div>
       {/* <Modal /> */}
-
     </div>
   );
 };

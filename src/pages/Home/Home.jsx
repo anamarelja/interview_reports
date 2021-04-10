@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
+import {Link} from 'react-router-dom';
 import "./style.scss";
 import Card from "../../components/Card";
 import Login from "../../components/Login";
 import { candidateContext } from "../../App";
+import { tokenContext } from '../../App'
 
 const Home = () => {
   const { candidates, setCandidates } = useContext(candidateContext);
   const [search, setSearch] = useState("");
-  console.log(candidates);
+  const {token} = useContext(tokenContext);
 
   const inputSearch = (e) => {
     setSearch(e.target.value);
@@ -30,6 +32,7 @@ const Home = () => {
               placeholder="Seacrh by name..."
               onChange={inputSearch}
             />
+            { token && <Link to='/admin' className="links">Your Admin Panel</Link>}
           </div>
 
           <Login />

@@ -24,7 +24,8 @@ const LoginPage = () => {
     })
       .then((data) => {
         setError(false);
-        setToken(data);
+        localStorage.setItem('token', data.accessToken);
+        setToken(localStorage.getItem('token'));
       })
       .catch((g) => {
         setError(true);

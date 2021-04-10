@@ -5,10 +5,8 @@ import { candidateContext } from "../../App";
 
 const NewReport = () => {
   const { candidates } = useContext(candidateContext);
-
   //   const [reportCandidates,setReportCandidates] = useState()
   let [step, setStep] = useState(1);
-
 
   const nextHandler = () =>{
       step === 3 ? setStep(3) : setStep(step + 1)
@@ -114,7 +112,7 @@ const NewReport = () => {
               <button onClick={nextHandler}>Next</button>
             </div>
           </section>}
-}
+
       </main>
     </div>
   );
