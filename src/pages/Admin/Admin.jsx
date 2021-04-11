@@ -11,7 +11,6 @@ const Admin = () => {
 
   const companies = useContext(companyContext);
   const {reports} = useContext(reportContext);
-  console.log(reports)
 
   return (
     <div className="Admin">
@@ -35,7 +34,7 @@ const Admin = () => {
       </header>
 
       <div>
-        {/* {reports.map(e=> <Report reportInfo={e}/>)} */}
+        {reports.map(e=> <Report reportInfo={e}/>)}
       </div>
       {/* <Modal /> */}
     </div>

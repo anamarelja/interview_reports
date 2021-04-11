@@ -22,7 +22,6 @@ const Report = (props) => {
         </span>
       </div>
       {openModal ? <Modal cancelModal={setOpenModal} reportInfo={props.reportInfo}/> : null}
-      
     </div>
   );
 };

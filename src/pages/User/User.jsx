@@ -34,7 +34,7 @@ const User = (props) => {
       </header>
 
       <div>
-        {candidates && (
+        {user && (
           <div className="user-card">
             <div className="user-info">
               <img src={user.avatar} alt="pic" />
