@@ -5,6 +5,7 @@ import { tokenContext } from "../../App";
 import OurFetch from "../../OurFetch";
 
 
+
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +25,10 @@ const LoginPage = () => {
     })
       .then((data) => {
         setError(false);
+
         localStorage.setItem('token', data.accessToken);
         setToken(localStorage.getItem('token'));
+
       })
       .catch((g) => {
         setError(true);
@@ -34,6 +37,7 @@ const LoginPage = () => {
 
   return (
     <div className={error ? "errorPage" : "LoginPage"}>
+
       <header>
         <div className="wrapper">
           <Link to="/" className="links">
@@ -45,7 +49,7 @@ const LoginPage = () => {
       <div className="Form">
         <p className="welcomeMessage">Sign in to Account</p>
         <div className="inputs">
-        <label for="usernmae">Username: </label>
+        <label for="username">Username: </label>
         <input
           type="text"
           name="username"
@@ -73,6 +77,7 @@ const LoginPage = () => {
         {token && <Redirect to="/admin" />}
 
         
+
       </div>
     </div>
   );

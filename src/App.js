@@ -4,7 +4,10 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
+
+
 import LoginPage from "./pages/LoginPage";
+
 import NewReport from "./pages/NewReport";
 import User from "./pages/User";
 
@@ -12,17 +15,20 @@ export const candidateContext = React.createContext({});
 export const tokenContext = React.createContext({});
 export const companyContext = React.createContext({});
 export const reportContext = React.createContext({});
+export const validContext = React.createContext({});
 
 function App() {
   const [candidates, setCandidates] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [reports, setReports] = useState([]);
+  const [validReports, setValidReports] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const { Provider: CandidatesProvider } = candidateContext;
   const { Provider: TokenProvider } = tokenContext;
   const { Provider: CompanyProvider } = companyContext;
   const { Provider: ReportProvider } = reportContext;
+
 
   useEffect(() => {
     fetch("http://localhost:3333/api/candidates")
@@ -43,10 +49,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3333/api/reports")
+    if(!validReports){
+      fetch("http://localhost:3333/api/reports")
       .then((res) => res.json())
       .then((reports) => setReports(reports));
-  }, []);
+    }
+  }, [validReports]);
 
   return (
     <div className="App">

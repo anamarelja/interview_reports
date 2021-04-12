@@ -15,6 +15,7 @@ const User = (props) => {
 
   const user = candidates.find((e) => e.id == props.match.params.id);
 
+
   return (
     <div className="User">
       <header>

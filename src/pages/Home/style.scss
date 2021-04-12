@@ -1,7 +1,7 @@
 .Home {
   background-color: #f4f5f7;
 
-  .wrapper-text{
+  .wrapper-text {
     width: 60%;
     margin: auto;
     font-size: 20px;
@@ -10,7 +10,7 @@
     color: #4e4e4e;
     padding-bottom: 10px;
   }
-  
+
   header {
     width: 100%;
     height: 60px;
@@ -25,7 +25,7 @@
       align-items: center;
       line-height: 60px;
       color: #4e4e4e;
-      div{
+      div {
         display: flex;
         input {
           height: 40px;
@@ -36,23 +36,23 @@
           outline: none;
           border: none;
           padding-left: 10px;
-          
         }
-        .links{
+        .links {
           text-decoration: none;
           color: #4e4e4e;
           padding-left: 15px;
         }
       }
-      
     }
+
+ 
   }
   .Cards {
     width: 70%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
-  
   }
 }

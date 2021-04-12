@@ -13,6 +13,7 @@ const Home = () => {
   
   const {token} = useContext(tokenContext);
 
+
   return (
     <div className="Home">
       <header>
@@ -29,6 +30,7 @@ const Home = () => {
           </div>
 
           <Login />
+
         </div>
       </header>
         <div className="wrapper-text">Candidates</div>
