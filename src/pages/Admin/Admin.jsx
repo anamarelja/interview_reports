@@ -5,6 +5,7 @@ import Login from "../../components/Login";
 import Modal from "../../components/Modal";
 import { reportContext } from "../../App";
 import { tokenContext } from "../../App";
+import { validContext } from "../../App";
 
 const Admin = () => {
   const { reports, setReports } = useContext(reportContext);
@@ -12,21 +13,30 @@ const Admin = () => {
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
   const { token } = useContext(tokenContext);
+  const { setValidReports } = useContext(validContext);
 
-  const inputSearch = (e) => {
-    setSearch(e.target.value);
-    setReports(
-      reports.filter(
-        (e) =>
-          e.candidateName
-            .toLocaleLowerCase()
-            .startsWith(`${search.toLocaleLowerCase()}`) ||
-          e.companyName
-            .toLocaleLowerCase()
-            .startsWith(`${search.toLocaleLowerCase()}`)
-      )
-    );
-  };
+  const filtered = reports.filter(
+    (e) =>
+      e.candidateName
+        .toLocaleLowerCase()
+        .startsWith(`${search.toLocaleLowerCase()}`) ||
+      e.companyName
+        .toLocaleLowerCase()
+        .startsWith(`${search.toLocaleLowerCase()}`)
+  )
+
+  const deleteReport = (e)=>{
+    fetch(`//localhost:3333/api/reports/${e.id}`,{
+      method:'DELETE',
+      headers: { 
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token
+       },
+    })
+    .then(res=>res.json())
+    .then(data => console.log(data))
+  }
+
 
   return (
     <div className="Admin">
@@ -38,7 +48,7 @@ const Admin = () => {
             <input
               type="text"
               placeholder="Search by name or company name..."
-              onChange={inputSearch}
+              onChange={(e)=>setSearch(e.target.value)}
             />
             <Link to="/" className="links">
               Home
@@ -51,7 +61,7 @@ const Admin = () => {
         </div>
       </header>
       <div className="">
-        {reports.map((e) => (
+        {filtered.map((e) => (
           <div className="Report">
             <div>
               <p className="details">Name</p>
@@ -72,7 +82,10 @@ const Admin = () => {
               >
                 i
               </button>
-              <button>x</button>
+              <button onClick={()=>{
+                deleteReport(e)
+                setValidReports(false)
+                }}>x</button>
             </div>
           </div>
         ))}

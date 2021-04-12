@@ -4,10 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
-
-
 import LoginPage from "./pages/LoginPage";
-
 import NewReport from "./pages/NewReport";
 import User from "./pages/User";
 
@@ -28,7 +25,7 @@ function App() {
   const { Provider: TokenProvider } = tokenContext;
   const { Provider: CompanyProvider } = companyContext;
   const { Provider: ReportProvider } = reportContext;
-
+  const { Provider: ValidProvider } = validContext;
 
   useEffect(() => {
     fetch("http://localhost:3333/api/candidates")
@@ -49,10 +46,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(!validReports){
+    if (!validReports) {
       fetch("http://localhost:3333/api/reports")
-      .then((res) => res.json())
-      .then((reports) => setReports(reports));
+        .then((res) => res.json())
+        .then((reports) => setReports(reports));
+      setValidReports(true);
     }
   }, [validReports]);
 
@@ -63,12 +61,13 @@ function App() {
           <TokenProvider value={{ token, setToken }}>
             <CompanyProvider value={companies}>
               <ReportProvider value={{ reports, setReports }}>
-                <Route exact path="/" component={Home} />
-                {/* {token ? <Route exact path="/admin" component={Admin}/> : <Redirect to='/login'/>} */}
-                <Route exact path="/admin" component={Admin}/>
-                <Route path="/login" component={LoginPage} />
-                <Route path="/user:id" component={User} />
-                <Route path="/admin/newreport" component={NewReport} />
+                <ValidProvider value={{validReports, setValidReports}}>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/admin" component={Admin} />
+                  <Route path="/login" component={LoginPage} />
+                  <Route path="/user:id" component={User} />
+                  <Route path="/admin/newreport" component={NewReport} />
+                </ValidProvider>
               </ReportProvider>
             </CompanyProvider>
           </TokenProvider>
