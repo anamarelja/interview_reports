@@ -11,6 +11,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const {token} = useContext(tokenContext);
 
+
   const inputSearch = (e) => {
     setSearch(e.target.value);
     setCandidates(
@@ -36,6 +37,7 @@ const Home = () => {
           </div>
 
           <Login />
+
         </div>
       </header>
         <div className="wrapper-text">Candidates</div>
