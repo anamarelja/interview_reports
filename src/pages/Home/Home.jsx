@@ -9,16 +9,9 @@ import { tokenContext } from '../../App'
 const Home = () => {
   const { candidates, setCandidates } = useContext(candidateContext);
   const [search, setSearch] = useState("");
+  const filteredCandidates = candidates.filter(e=> e.name.toLowerCase().includes(search.toLowerCase()))
+  
   const {token} = useContext(tokenContext);
-
-  const inputSearch = (e) => {
-    setSearch(e.target.value);
-    setCandidates(
-      candidates.filter((e) =>
-        e.name.toLocaleLowerCase().startsWith(`${search.toLocaleLowerCase()}`)
-      )
-    );
-  };
 
   return (
     <div className="Home">
@@ -30,7 +23,7 @@ const Home = () => {
               type="text"
               value={search}
               placeholder="Seacrh by name..."
-              onChange={inputSearch}
+              onChange={(e)=>setSearch(e.target.value)}
             />
             { token && <Link to='/admin' className="links">Your Admin Panel</Link>}
           </div>
@@ -41,7 +34,7 @@ const Home = () => {
         <div className="wrapper-text">Candidates</div>
       <div className="Cards">
           
-        {candidates.map((e) => (
+        {filteredCandidates.map((e) => (
           <Card user={e} />
         ))}
       </div>

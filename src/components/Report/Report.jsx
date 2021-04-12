@@ -3,7 +3,6 @@ import "./report.scss";
 import Modal from "../../components/Modal";
 
 const Report = (props) => {
-  console.log(props)
 
   const [openModal, setOpenModal] = useState(false);
 
