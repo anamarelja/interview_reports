@@ -45,12 +45,14 @@
       }
     }
 
-    .Cards {
-      width: 70%;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: auto;
-    }
+ 
+  }
+  .Cards {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
   }
 }
