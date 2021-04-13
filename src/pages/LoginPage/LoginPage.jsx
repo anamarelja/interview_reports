@@ -49,7 +49,7 @@ const LoginPage = () => {
       <div className="Form">
         <p className="welcomeMessage">Sign in to Account</p>
         <div className="inputs">
-        <label for="username">Username: </label>
+        <label for="username">Username:</label>
         <input
           type="text"
           name="username"

@@ -11,8 +11,8 @@ const User = (props) => {
   const { reports } = useContext(reportContext)
   const { id: matchId } = props.match.params;
   const { candidates } = useContext(candidateContext);
-  const { token } = useContext(tokenContext);
 
+  const { token } = useContext(tokenContext);
   const user = candidates.find((e) => e.id == props.match.params.id);
 
 
