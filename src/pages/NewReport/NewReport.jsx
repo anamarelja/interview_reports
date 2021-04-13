@@ -27,7 +27,6 @@ const NewReport = () => {
   const [candID, setCandID] = useState("");
   const [compID, setCompID] = useState("");
   const [candNote, setCandNote] = useState("");
-
   const [candidateActive, setCandidateActive] = useState(false);
   const [activeCompany, setActiveCompany] = useState(false);
 
@@ -62,8 +61,8 @@ const NewReport = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
       .catch((error) => console.error(error));
+
   };
 
   const nextHandler = () => {
@@ -285,7 +284,7 @@ const NewReport = () => {
                   Back
                 </button>
                 <button className="handler-btn" onClick={submitReport}>
-                  submit
+                  Submit
                 </button>
               </div>
             </div>
