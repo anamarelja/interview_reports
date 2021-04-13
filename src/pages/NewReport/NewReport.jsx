@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./NewReport.scss";
-
+import {Redirect} from 'react-router-dom'
 import { candidateContext } from "../../App";
+import {tokenContext} from "../../App"
 
 const NewReport = () => {
   const { candidates } = useContext(candidateContext);
+  const { token } = useContext(tokenContext);
+
+
   const [search, setSearch] = useState("");
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
@@ -25,12 +29,6 @@ const NewReport = () => {
   const [compID, setCompID] = useState("");
   const [candNote, setCandNote] = useState("");
 
-  console.log(candName);
-  console.log(candCompany);
-  console.log(candInterviewDate);
-  console.log(candPhase);
-  console.log(candStatus);
-
   const [candidateActive, setCandidateActive] = useState(false);
   const [activeCompany, setActiveCompany] = useState(false);
 
@@ -49,10 +47,10 @@ const NewReport = () => {
   const submitReport = () => {
     fetch("http://localhost:3333/api/reports", {
       method: "POST",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
-        'Authorization': 'Bearer ' + localStorage.getItem("token")
-       },
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       body: JSON.stringify({
         candidateId: candID,
         candidateName: candName,
@@ -66,7 +64,7 @@ const NewReport = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error));
   };
 
   const nextHandler = () => {
@@ -88,6 +86,7 @@ const NewReport = () => {
 
   return (
     <div className="NewReport">
+      {token == null && <Redirect to="/login"></Redirect>}
       <header>
         <h1>Reports Administration</h1>
         <div className="controls">

@@ -40,12 +40,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3333/api/companies")
-      .then((res) => res.json())
-      .then((data) => setCompanies(data));
-  }, []);
-
-  useEffect(() => {
     if (!validReports) {
       fetch("http://localhost:3333/api/reports")
         .then((res) => res.json())
@@ -59,17 +53,15 @@ function App() {
       <Switch>
         <CandidatesProvider value={{ candidates, setCandidates }}>
           <TokenProvider value={{ token, setToken }}>
-            <CompanyProvider value={companies}>
-              <ReportProvider value={{ reports, setReports }}>
-                <ValidProvider value={{validReports, setValidReports}}>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/admin" component={Admin} />
-                  <Route path="/login" component={LoginPage} />
-                  <Route path="/user:id" component={User} />
-                  <Route path="/admin/newreport" component={NewReport} />
-                </ValidProvider>
-              </ReportProvider>
-            </CompanyProvider>
+            <ReportProvider value={{ reports, setReports }}>
+              <ValidProvider value={{ validReports, setValidReports }}>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/admin" component={Admin} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/user:id" component={User} />
+                <Route path="/admin/newreport" component={NewReport} />
+              </ValidProvider>
+            </ReportProvider>
           </TokenProvider>
         </CandidatesProvider>
       </Switch>
