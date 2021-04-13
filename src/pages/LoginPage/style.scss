@@ -1,31 +1,27 @@
-
 header {
-    width: 100%;
-    height: 60px;
-    background-color: rgb(180, 180, 180);
+  width: 100%;
+  height: 60px;
+  background-color: #5766e2;
 
-    .wrapper {
-      width: 80%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: auto;
-      line-height: 60px;
+  .wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    line-height: 60px;
 
-      .links {
-        text-decoration: none;
-        color: #4e4e4e;
-        font-size: 18px;
-      }
+    .links {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
     }
+  }
 }
-
 
 .LoginPage {
   background-color: #f4f5f7;
   height: 100vh;
-
-  
 
   .Form {
     margin: auto;
@@ -34,21 +30,22 @@ header {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 5px solid #18ab29ab;
+    border: 5px solid transparent;
+    box-shadow: 0 0 20px 1px lightgray;
     border-radius: 15px;
     width: 600px;
     height: 400px;
     background-color: #ffffff;
     color: #4e4e4e;
     .welcomeMessage {
-      color: #18ab29;
+      color: #5766e2;
       font-size: 30px;
       font-weight: bold;
-      border-bottom: 1px solid #18ab29;
+      border-bottom: 1px solid #5766e2;
       padding-bottom: 10px;
     }
     .loggingButton {
-      background-color: #44c767;
+      background-color: #5766e2;
       border: none;
       outline: none;
       border-radius: 20px;
@@ -57,11 +54,13 @@ header {
       color: #ffffff;
       font-family: Arial;
       font-size: 17px;
-      padding: 5px 70px;
+      padding: 5px 30px;
       text-decoration: none;
+      height: 40px;
+      //width: 25px;
     }
     .loggingButton:hover {
-      background-color: #5cbf2a;
+      background-color: #5766e2;
     }
     .loggingButton:active {
       position: relative;
@@ -73,7 +72,18 @@ header {
       line-height: 30px;
 
       input {
-        width: 300px;
+        width: 250px;
+        height: 35px;
+        border-radius: 13px;
+        border: 0.3px solid grey;
+        outline: none;
+        padding-left: 5px;
+      }
+      label {
+        color: #5766e2;
+        padding-left: 10px;
+        margin-bottom: 7px;
+        margin-top: 12px;
       }
     }
   }
@@ -88,6 +98,7 @@ header {
   }
 
   .Form {
+    position: relative;
     margin: auto;
     margin-top: 150px;
     display: flex;
@@ -101,20 +112,24 @@ header {
     background-color: #ffffff;
     box-shadow: 0px 0px 20px red;
     color: #4e4e4e;
+
     .welcomeMessage {
-      color: #18ab29;
+      color: #5766e2;
       font-size: 30px;
       font-weight: bold;
-      border-bottom: 1px solid #18ab29;
+      border-bottom: 1px solid #5766e2;
       padding-bottom: 10px;
     }
-    .errorMessage{
-        font-size: 12px;
-        color: red;
-        font-weight: bold;
+    .errorMessage {
+      position: absolute;
+      bottom: 70px;
+      font-size: 12px;
+      color: red;
+      font-weight: bold;
+      margin-top: 5px;
     }
     .loggingButton {
-      background-color: #44c767;
+      background-color: #5766e2;
       border: none;
       outline: none;
       border-radius: 20px;
@@ -123,11 +138,12 @@ header {
       color: #ffffff;
       font-family: Arial;
       font-size: 17px;
-      padding: 5px 70px;
+      padding: 5px 30px;
       text-decoration: none;
+      height: 40px;
     }
     .loggingButton:hover {
-      background-color: #5cbf2a;
+      background-color: #fa6267;
     }
     .loggingButton:active {
       position: relative;
@@ -139,10 +155,23 @@ header {
       line-height: 30px;
 
       input {
-        width: 300px;
+        width: 250px;
+        height: 35px;
+        border-radius: 13px;
+        border: 0.3px solid grey;
+        outline: none;
+        padding-left: 5px;
+      }
+      label {
+        color: #5766e2;
+        padding-left: 10px;
+        margin-bottom: 7px;
+        margin-top: 12px;
       }
     }
   }
-  
-}
+  @media all and (max-width: 630px){
+   
 
+  }
+}
