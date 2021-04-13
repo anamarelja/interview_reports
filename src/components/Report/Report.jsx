@@ -10,14 +10,14 @@ const Report = (props) => {
     <div className="Report">
       <div className="info">
         <span>
-          <h5>{props.reportInfo.companyName}</h5>
+          <p>{props.reportInfo.companyName}</p>
         </span>
         <span>
-          <h5>{props.reportInfo.interviewDate.slice(0,15)}</h5>
+          <p>{props.reportInfo.interviewDate.slice(0,15)}</p>
         </span>
         <span className="last-span">
-          <h5>{props.reportInfo.status}</h5>
-          <i class="fas fa-info-circle" onClick={() => setOpenModal(true)}></i>
+          <p>{props.reportInfo.status}</p>
+          <i class="fas fa-info" onClick={() => setOpenModal(true)}></i>
         </span>
       </div>
       {openModal ? <Modal cancelModal={setOpenModal} reportInfo={props.reportInfo}/> : null}
