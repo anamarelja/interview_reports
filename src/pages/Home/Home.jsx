@@ -23,12 +23,11 @@ const Home = () => {
             <input
               type="text"
               value={search}
-              placeholder="Seacrh by name..."
+              placeholder="Search..."
               onChange={(e)=>setSearch(e.target.value)}
             />
             { token && <Link to='/admin' className="links">Your Admin Panel</Link>}
           </div>
-
           <Login />
 
         </div>

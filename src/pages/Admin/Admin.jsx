@@ -47,7 +47,7 @@ const Admin = () => {
             <h3>LOGO</h3>
             <input
               type="text"
-              placeholder="Search by name or company name..."
+              placeholder="Search..."
               onChange={(e)=>setSearch(e.target.value)}
             />
             <Link to="/" className="links">
@@ -61,6 +61,7 @@ const Admin = () => {
         </div>
       </header>
       <div className="">
+        <p className="reportTitle">All reports</p>
         {filtered.map((e) => (
           <div className="Report">
             <div>
@@ -80,12 +81,13 @@ const Admin = () => {
                   setUser(e);
                 }}
               >
-                i
+                <i class="fas fa-info"></i>
               </button>
               <button onClick={()=>{
                 deleteReport(e)
                 setValidReports(false)
-                }}>x</button>
+                }}><i class="far fa-trash-alt"></i>
+                </button>
             </div>
           </div>
         ))}
