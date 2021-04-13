@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./NewReport.scss";
-import {Redirect} from 'react-router-dom'
+import { Redirect, Link } from "react-router-dom";
 import { candidateContext } from "../../App";
-import {tokenContext} from "../../App"
+import { tokenContext } from "../../App";
 
 const NewReport = () => {
   const { candidates } = useContext(candidateContext);
   const { token } = useContext(tokenContext);
-
 
   const [search, setSearch] = useState("");
   const [step, setStep] = useState(1);
@@ -68,15 +67,24 @@ const NewReport = () => {
   };
 
   const nextHandler = () => {
-    candName == ""
-      ? alert("Add candidate name")
-      : step === 3
-      ? setStep(3)
-      : setStep(step + 1);
+    step === 1
+      ? candName == ""
+        ? alert("Enter candidate name")
+        : setStep(2)
+      : candCompany == ""
+      ? alert("Enter company name")
+      : setStep(3);
   };
+
   const backHandler = () => {
     step === 0 ? setStep(1) : setStep(step - 1);
   };
+
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
+  let yyyy = today.getFullYear();
+  today = yyyy + "-" + mm + "-" + dd;
 
   useEffect(() => {
     fetch("http://localhost:3333/api/companies")
@@ -87,13 +95,16 @@ const NewReport = () => {
   return (
     <div className="NewReport">
       {token == null && <Redirect to="/login"></Redirect>}
-      <header>
-        <h1>Reports Administration</h1>
-        <div className="controls">
-          <button className="reports">Reports</button>
-          <button className="crt-report">Create Report</button>
-        </div>
-      </header>
+      <div className="header-container">
+        <header>
+          <p className="main-title">Reports Administration</p>
+          <div className="controls">
+            <Link to="/Admin">
+              <button className="reports-btn">All Reports</button>
+            </Link>
+          </div>
+        </header>
+      </div>
 
       <main>
         {step === 1 && (
@@ -116,9 +127,10 @@ const NewReport = () => {
             <div className="candidate-select">
               <input
                 type="text"
-                placeholder="search"
+                placeholder="Search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                className="search-input"
               />
 
               <div className="candidate-list">
@@ -136,7 +148,9 @@ const NewReport = () => {
                 ))}
               </div>
 
-              <button onClick={nextHandler}>Next</button>
+              <button className="handler-btn" onClick={nextHandler}>
+                Next
+              </button>
             </div>
           </section>
         )}
@@ -156,15 +170,16 @@ const NewReport = () => {
                 <p>3</p>
                 <h4>Fill Report Details</h4>
               </div>
-              <p>Candidate:</p>
-              <h3>{candName}</h3>
+              <p className="candidate-title">Candidate:</p>
+              <h3 className="candidate-text">{candName}</h3>
             </div>
 
             <div className="company-select">
               <input
                 type="text"
-                placeholdr="search companies"
+                placeholder="Search.."
                 onChange={(e) => setSearch(e.target.value)}
+                className="search-input"
               />
 
               <div className="company-list">
@@ -180,8 +195,12 @@ const NewReport = () => {
                 ))}
               </div>
               <div className="buttons">
-                <button onClick={backHandler}>Back</button>
-                <button onClick={nextHandler}>Next</button>
+                <button className="handler-btn" onClick={backHandler}>
+                  Back
+                </button>
+                <button className="handler-btn" onClick={nextHandler}>
+                  Next
+                </button>
               </div>
             </div>
           </section>
@@ -203,11 +222,11 @@ const NewReport = () => {
                 <h4>Fill Report Details</h4>
               </div>
 
-              <p>Candidate:</p>
-              <h3>{candName}</h3>
+              <p className="candidate-title">Candidate:</p>
+              <h3 className="candidate-text">{candName}</h3>
 
-              <p>Company:</p>
-              <h3>{candCompany}</h3>
+              <p className="company-title">Company:</p>
+              <h3 className="company-text">{candCompany}</h3>
             </div>
 
             <div className="interview-select">
@@ -220,7 +239,7 @@ const NewReport = () => {
                     name="trip-start"
                     value={candInterviewDate}
                     min="1990-01-01"
-                    max="2021-12-31"
+                    max={today}
                     onChange={(e) => setCandInterviewDate(e.target.value)}
                     required
                   />
@@ -262,8 +281,12 @@ const NewReport = () => {
               </div>
 
               <div className="buttons">
-                <button onClick={backHandler}>Back</button>
-                <button onClick={submitReport}>submit</button>
+                <button className="handler-btn" onClick={backHandler}>
+                  Back
+                </button>
+                <button className="handler-btn" onClick={submitReport}>
+                  submit
+                </button>
               </div>
             </div>
           </section>

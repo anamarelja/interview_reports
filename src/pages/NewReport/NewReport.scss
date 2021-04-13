@@ -1,50 +1,110 @@
+$blue-header: #5766e2;
+$button-red: #fa6267;
+$background-card: #d3d3d385;
+$bg-color: #f4f5f7;
+
+@mixin active() {
+  background-color: $blue-header;
+  color: white;
+  padding: 20px;
+  margin: 10px 0px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 1.5em;
+}
+
 .NewReport {
-  header {
-    padding: 0 40px;
-    background-color: #eeeeee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
+  background-color: $bg-color;
+  height: 100vh;
+
+  .header-container {
+    background-color: $blue-header;
+    header {
+      background-color: $blue-header;
+      width: 80%;
+      margin: 0 auto;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+
+      .main-title{
+        font-size: 1.2em;
+      }
+      .reports-btn {
+        color: #ffffff;
+        background: transparent;
+        height: 35px;
+        width: 130px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+
+      
+      }
+    }
   }
 
   main {
-    width: 70%;
+    width: 100%;
+    max-width: 80%;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 50px;
   }
 
   .page {
     display: flex;
 
+    .search-input {
+      padding: 15px;
+      border: 20px;
+      font-size: 1.2em;
+      color: rgba(0, 0, 0, 0.151);
+      outline: none;
+      border-radius: 20px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.226);
+    }
     .wizard-steps {
-      width: 25%;
-      border-right: 3px solid black;
+      width: 300px;
+      padding-right: 30px;
+      border-right: 2px solid rgba(0, 0, 0, 0.352);
       margin-right: 50px;
-      height: 70vh;
+      margin-bottom: 50px;
       div {
         display: flex;
         align-items: center;
         margin-bottom: 20px;
         color: #8b8b8b;
+        font-size: 1.3em;
+        font-weight: 100;
         p {
           margin-right: 10px;
           border: 1px solid #8b8b8b;
-          border-radius: 50%;
+          font-size: 1.3em;
+          border-radius: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 30px;
-          height: 30px;
+          width: 50px;
+          height: 50px;
+          font-weight: 100;
           text-align: center;
+        }
+
+        h4{
+          font-weight: 400;
         }
       }
 
       .active {
         font-weight: bold;
-        color: black;
+        color: $blue-header;
         p {
-          border: 1px solid black;
+          border: 1px solid $blue-header;
         }
       }
     }
@@ -61,28 +121,26 @@
         margin: 30px 0px;
       }
       .candidate {
-        background-color: #eeeeee;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.226);
         margin-bottom: 20px;
         border-radius: 10px;
         padding: 20px;
         border: 2px solid transparent;
         width: 49%;
+        font-size: 1.5em;
         cursor: pointer;
 
         &.candidate:hover {
-          border: 2px solid #3cad59;
-          box-shadow: 0px 0px 5px #3cad59;
+          border: 2px solid $blue-header;
+          box-shadow: 0px 0px 5px $blue-header;
         }
       }
+
       .candidate-active {
-        background-color:  #3cad59;
-        color: white;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        padding: 20px;
-        border: 2px solid transparent;
+        @include active();
         width: 49%;
-        cursor: pointer;
+        margin: 0;
       }
     }
 
@@ -95,15 +153,17 @@
         width: 100%;
 
         .company {
-          background-color: #eeeeee;
+          background-color: #ffffff;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.226);
           padding: 20px;
-          margin: 5px 0px;
+          font-size: 1.5em;
+          margin: 10px 0px;
           cursor: pointer;
           border: 2px solid transparent;
           border-radius: 10px;
           &.company:hover {
-            border: 2px solid #3cad59;
-            box-shadow: 0px 0px 5px #3cad59;
+            border: 2px solid $blue-header;
+            box-shadow: 0px 0px 5px $blue-header;
           }
         }
       }
@@ -115,13 +175,7 @@
     }
 
     .company-active {
-      background-color: #3cad59;
-      color: white;
-      padding: 20px;
-      margin: 5px 0px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      border-radius: 10px;
+      @include active();
     }
 
     .interview-select {
@@ -132,20 +186,28 @@
       .controls {
         display: flex;
         justify-content: space-between;
+        div {
+          width: 30%;
+        }
+
+
         .date input,
         .status select,
         .phase select {
           padding: 5px;
-          height: 30px;
-          width: 250px;
+          height: 50px;
+          font-size: 1.2em;
+          width: 100%;
         }
       }
 
       .notes {
         margin: 30px 0px;
         textarea {
+          padding: 10px;
+          font-size: 1.3em;
           width: 100%;
-          height: 200px;
+          height: 300px;
         }
         p {
           margin-bottom: 5px;
@@ -159,8 +221,89 @@
     }
   }
 
-  button {
-    padding: 5px 20px;
+  .handler-btn {
+    background-color: $button-red;
+    color: #ffffff;
+    height: 45px;
+    width: 100px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    cursor: pointer;
     margin: 10px;
+  }
+
+  .candidate-title {
+    font-size: 1.2em;
+    font-weight: 100;
+    margin-top: 40px;
+  }
+  .candidate-text,
+  .company-text {
+    font-size: 1.3em;
+    font-weight: 400;
+    margin: 5px 0px;
+  }
+
+  .company-title {
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: 1.2em;
+  }
+}
+
+/* RESPONSIVE */
+
+@media all and (max-width: 986px) {
+  .page {
+    .candidate-select {
+      .candidate-list {
+        flex-direction: column;
+        .candidate {
+          width: 100%;
+        }
+
+        .candidate-active {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .interview-select {
+      .controls {
+        flex-direction: column;
+        div.date,div.phase,div.status{
+          width: 100%;
+
+        }
+      }
+
+      
+
+    }
+  }
+}
+@media all and (max-width: 700px) {
+  .NewReport {
+    height: 140vh;
+    .page {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .wizard-steps {
+        display: flex;
+        flex-direction: column;
+
+        padding-right: 30px;
+        margin-right: 50px;
+        border: none;
+        margin: 0 auto 50px;
+      }
+      .search-input{
+        width: 100%;
+      }
+    }
   }
 }
