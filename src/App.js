@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -10,20 +10,17 @@ import User from "./pages/User";
 
 export const candidateContext = React.createContext({});
 export const tokenContext = React.createContext({});
-export const companyContext = React.createContext({});
 export const reportContext = React.createContext({});
 export const validContext = React.createContext({});
 
 function App() {
   const [candidates, setCandidates] = useState([]);
-  const [companies, setCompanies] = useState([]);
   const [reports, setReports] = useState([]);
   const [validReports, setValidReports] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const { Provider: CandidatesProvider } = candidateContext;
   const { Provider: TokenProvider } = tokenContext;
-  const { Provider: CompanyProvider } = companyContext;
   const { Provider: ReportProvider } = reportContext;
   const { Provider: ValidProvider } = validContext;
 
