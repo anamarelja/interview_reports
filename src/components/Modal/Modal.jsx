@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./modal.scss";
 
 const Modal = (props) => {
+  console.log(props.reportInfo)
   return (
     <div className="background">
       <div className="Modal">

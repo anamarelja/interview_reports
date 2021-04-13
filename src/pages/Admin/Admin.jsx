@@ -1,19 +1,46 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./style.scss";
 import Login from "../../components/Login";
-import Report from '../../components/Report'
 import Modal from "../../components/Modal";
-import {reportContext} from '../../App'
-import { companyContext } from "../../App";
+import { reportContext } from "../../App";
+import { tokenContext } from "../../App";
+import { validContext } from "../../App";
 
 const Admin = () => {
+  const { reports, setReports } = useContext(reportContext);
+  const [openModal, setOpenModal] = useState(false);
+  const [user, setUser] = useState("");
+  const [search, setSearch] = useState("");
+  const { token } = useContext(tokenContext);
+  const { setValidReports } = useContext(validContext);
 
-  const companies = useContext(companyContext);
-  const {reports} = useContext(reportContext);
+  const filtered = reports.filter(
+    (e) =>
+      e.candidateName
+        .toLocaleLowerCase()
+        .startsWith(`${search.toLocaleLowerCase()}`) ||
+      e.companyName
+        .toLocaleLowerCase()
+        .startsWith(`${search.toLocaleLowerCase()}`)
+  )
+
+  const deleteReport = (e)=>{
+    fetch(`//localhost:3333/api/reports/${e.id}`,{
+      method:'DELETE',
+      headers: { 
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token
+       },
+    })
+    .then(res=>res.json())
+    .then(data => console.log(data))
+  }
+
 
   return (
     <div className="Admin">
+      {token == null && <Redirect to="/login"></Redirect>}
       <header>
         <div className="wrapper">
           <div>
@@ -21,6 +48,7 @@ const Admin = () => {
             <input
               type="text"
               placeholder="Search by name or company name..."
+              onChange={(e)=>setSearch(e.target.value)}
             />
             <Link to="/" className="links">
               Home
@@ -32,11 +60,39 @@ const Admin = () => {
           <Login />
         </div>
       </header>
+      <div className="">
+        {filtered.map((e) => (
+          <div className="Report">
+            <div>
+              <p className="details">Name</p>
+              <p>{e.candidateName}</p>
+            </div>
 
-      <div>
-        {reports.map(e=> <Report reportInfo={e}/>)}
+            <div>
+              <p className="details">Company</p>
+              <p>{e.companyName}</p>
+            </div>
+            
+            <div>
+              <button
+                onClick={() => {
+                  setOpenModal(true);
+                  setUser(e);
+                }}
+              >
+                i
+              </button>
+              <button onClick={()=>{
+                deleteReport(e)
+                setValidReports(false)
+                }}>x</button>
+            </div>
+          </div>
+        ))}
+        {openModal ? (
+          <Modal cancelModal={setOpenModal} reportInfo={user} />
+        ) : null}
       </div>
-      {/* <Modal /> */}
     </div>
   );
 };

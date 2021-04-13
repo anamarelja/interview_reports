@@ -15,6 +15,7 @@ const User = (props) => {
   const { token } = useContext(tokenContext);
   const user = candidates.find((e) => e.id == props.match.params.id);
 
+
   return (
     <div className="User">
       <header>
