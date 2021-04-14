@@ -87,6 +87,13 @@ header {
       }
     }
   }
+
+  @media all and (max-width: 630px){
+    .Form{
+      width: 90%;
+
+    }
+  }
 }
 
 .errorPage {
@@ -171,7 +178,10 @@ header {
     }
   }
   @media all and (max-width: 630px){
-   
+    .Form{
+      width: 90%;
 
+    }
   }
+
 }
