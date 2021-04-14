@@ -10,7 +10,6 @@ const Home = () => {
   const { candidates, setCandidates } = useContext(candidateContext);
   const [search, setSearch] = useState("");
   const filteredCandidates = candidates.filter(e=> e.name.toLowerCase().includes(search.toLowerCase()))
-  
   const {token} = useContext(tokenContext);
 
 

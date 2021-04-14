@@ -40,7 +40,7 @@ const Admin = () => {
 
   return (
     <div className="Admin">
-      {token == null && <Redirect to="/login"></Redirect>}
+      { !token && <Redirect to="/login"></Redirect>}
       <header>
         <div className="wrapper">
           <div>
