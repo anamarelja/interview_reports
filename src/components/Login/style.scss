@@ -11,6 +11,10 @@
         line-height: 35px;
         text-align: center;
     }
-    
-    
+
+    @media all and (max-width: 650px){
+        .loggingButton{
+           font-size: 13px;
+        }  
+    }   
 }

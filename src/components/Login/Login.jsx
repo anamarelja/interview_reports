@@ -20,7 +20,7 @@ const Login = () => {
         </Link>
       ) : (
         <Link to="/login" className="loggingButton">
-          Login
+          <i class="far fa-user"></i> Login 
         </Link>
       )}
     </div>

@@ -28,7 +28,7 @@ const Home = () => {
             />
             { token && <Link to='/admin' className="links">Your Admin Panel</Link>}
           </div>
-          <Login />
+          <Login/>
 
         </div>
       </header>

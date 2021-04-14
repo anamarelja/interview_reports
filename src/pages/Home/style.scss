@@ -55,4 +55,18 @@
     flex-wrap: wrap;
     margin: auto;
   }
+  @media all and (max-width: 650px){
+  header .wrapper div{
+    font-size: 13px;
+    input{
+      width: 120px;
+    }
+    .links{
+      font-size: 13px;
+    }
+
+  }
 }
+}
+
+
