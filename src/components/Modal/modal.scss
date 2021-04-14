@@ -54,4 +54,10 @@
     outline: none;
     border: none;
   }
+
+  @media all and (max-width: 858px){
+    .Modal{
+      width: 80%;
+    }
+  }
 }

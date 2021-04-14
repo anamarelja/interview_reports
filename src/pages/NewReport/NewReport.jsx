@@ -3,14 +3,16 @@ import "./NewReport.scss";
 import { Redirect, Link } from "react-router-dom";
 import { candidateContext } from "../../App";
 import { tokenContext } from "../../App";
-
+import { validContext } from "../../App";
 const NewReport = () => {
   const { candidates } = useContext(candidateContext);
   const { token } = useContext(tokenContext);
+  const { setValidReports } = useContext(validContext);
 
   const [search, setSearch] = useState("");
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
+  const [redirect, setRedirect] = useState(false);
 
   const filteredCandidates = candidates.filter((e) =>
     e.name.toLowerCase().includes(search.toLowerCase())
@@ -42,26 +44,35 @@ const NewReport = () => {
     setActiveCompany({ active: i });
   };
 
+  let arr = [candInterviewDate, candPhase, candStatus, candNote];
   const submitReport = () => {
-    fetch("http://localhost:3333/api/reports", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        candidateId: candID,
-        candidateName: candName,
-        companyId: compID,
-        companyName: candCompany,
-        interviewDate: candInterviewDate,
-        phase: candPhase,
-        status: candStatus,
-        note: candNote,
-      }),
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error(error));
+
+    if (!candInterviewDate || !candPhase || !candStatus || !candNote) {
+      alert("ENTER INFO");
+    } else {
+      fetch("http://localhost:3333/api/reports", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          candidateId: candID,
+          candidateName: candName,
+          companyId: compID,
+          companyName: candCompany,
+          interviewDate: candInterviewDate,
+          phase: candPhase,
+          status: candStatus,
+          note: candNote,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+      setRedirect(true);
+      setValidReports(false);
+    }
 
   };
 
@@ -93,13 +104,19 @@ const NewReport = () => {
 
   return (
     <div className="NewReport">
+      {redirect && <Redirect to="/admin"></Redirect>}
       {token == null && <Redirect to="/login"></Redirect>}
       <div className="header-container">
         <header>
           <p className="main-title">Reports Administration</p>
           <div className="controls">
             <Link to="/Admin">
-              <button className="reports-btn">All Reports</button>
+              <button
+                className="reports-btn"
+                onClick={() => setValidReports(false)}
+              >
+                All Reports
+              </button>
             </Link>
           </div>
         </header>
@@ -251,6 +268,7 @@ const NewReport = () => {
                     onChange={(e) => setCandPhase(e.target.value)}
                     required
                   >
+                    <option value="">select</option>
                     <option value="cv">cv</option>
                     <option value="hr">hr</option>
                     <option value="tech">tech</option>
@@ -264,6 +282,7 @@ const NewReport = () => {
                     onChange={(e) => setCandStatus(e.target.value)}
                     required
                   >
+                    <option value="">select</option>
                     <option value="passed">passed</option>
                     <option value="declined">declined</option>
                   </select>

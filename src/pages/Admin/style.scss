@@ -90,4 +90,25 @@
             
         }
     }
+
+    @media all and (max-width: 765px){
+        header .wrapper div > * {
+            font-size: 13px;
+        }
+        header .wrapper input{
+            width: 150px;
+        }
+    }
+
+    @media all and (max-width: 620px){
+        header .wrapper div > * {
+            font-size: 12px;
+        }
+        header .wrapper input{
+            width: 100px;
+        }
+        header .wrapper div h3{
+            display: none;
+        }
+    }
 }
