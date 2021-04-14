@@ -15,10 +15,6 @@ export const validContext = React.createContext({});
 
 function App() {
   const [candidates, setCandidates] = useState([]);
-<<<<<<< HEAD
-
-=======
->>>>>>> 40c4ffc74cf905e0b1cc4cf435881ef45d7b8937
   const [reports, setReports] = useState([]);
   const [validReports, setValidReports] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
